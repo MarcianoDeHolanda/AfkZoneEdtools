@@ -11,12 +11,11 @@ import java.lang.reflect.Method;
  * PlaceholderAPI expansion for AfkZoneEdtools
  * Uses reflection to avoid direct dependency on PlaceholderAPI
  */
-public class AfkZoneExpansion {
+public class AfkZonePlaceholderExpansion {
     
     private final AfkZoneEdtools plugin;
-    private Object expansion;
     
-    public AfkZoneExpansion(AfkZoneEdtools plugin) {
+    public AfkZonePlaceholderExpansion(AfkZoneEdtools plugin) {
         this.plugin = plugin;
     }
     
@@ -28,35 +27,13 @@ public class AfkZoneExpansion {
             Class.forName("me.clip.placeholderapi.PlaceholderAPI");
             plugin.getLogger().info("PlaceholderAPI found!");
             
-            // Create expansion using reflection
+            // Get PlaceholderExpansion class
             Class<?> expansionClass = Class.forName("me.clip.placeholderapi.expansion.PlaceholderExpansion");
             plugin.getLogger().info("PlaceholderExpansion class found!");
             
-            // Create expansion instance
-            expansion = java.lang.reflect.Proxy.newProxyInstance(
-                expansionClass.getClassLoader(),
-                new Class<?>[]{expansionClass},
-                (proxy, method, args) -> {
-                    String methodName = method.getName();
-                    
-                    switch (methodName) {
-                        case "getIdentifier":
-                            return "afkzone";
-                        case "getAuthor":
-                            return "MarcianoDeHolanda";
-                        case "getVersion":
-                            return plugin.getDescription().getVersion();
-                        case "persist":
-                            return true;
-                        case "onPlaceholderRequest":
-                            Player player = (Player) args[0];
-                            String params = (String) args[1];
-                            return onPlaceholderRequest(player, params);
-                        default:
-                            return method.getDefaultValue();
-                    }
-                }
-            );
+            // Create expansion using ASM or simple approach
+            // Since PlaceholderExpansion is abstract, we need to create a concrete subclass
+            Object expansion = createExpansionInstance(expansionClass);
             
             plugin.getLogger().info("PlaceholderAPI expansion created successfully!");
             
@@ -81,6 +58,20 @@ public class AfkZoneExpansion {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    private Object createExpansionInstance(Class<?> expansionClass) {
+        // Create a simple implementation using anonymous class
+        return new Object() {
+            public String getIdentifier() { return "afkzone"; }
+            public String getAuthor() { return "MarcianoDeHolanda"; }
+            public String getVersion() { return plugin.getDescription().getVersion(); }
+            public boolean persist() { return true; }
+            
+            public String onPlaceholderRequest(Player player, String params) {
+                return AfkZonePlaceholderExpansion.this.onPlaceholderRequest(player, params);
+            }
+        };
     }
     
     public String onPlaceholderRequest(Player player, String params) {
