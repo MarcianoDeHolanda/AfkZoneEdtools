@@ -4,7 +4,7 @@ import gz.devian.afkzoneedtools.commands.AfkZoneCommand;
 import gz.devian.afkzoneedtools.listeners.AfkZoneListener;
 import gz.devian.afkzoneedtools.listeners.PlayerListener;
 import gz.devian.afkzoneedtools.managers.*;
-import gz.devian.afkzoneedtools.placeholders.AfkZonePlaceholders;
+import gz.devian.afkzoneedtools.placeholders.AfkZoneExpansion;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -202,8 +202,13 @@ public class AfkZoneEdtools extends JavaPlugin {
      */
     private void registerPlaceholders() {
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            new AfkZonePlaceholders(this).register();
-            getLogger().info("PlaceholderAPI expansion registered successfully!");
+            AfkZoneExpansion expansion = new AfkZoneExpansion(this);
+            boolean success = expansion.register();
+            if (success) {
+                getLogger().info("PlaceholderAPI expansion registered successfully!");
+            } else {
+                getLogger().warning("Failed to register PlaceholderAPI expansion");
+            }
         } else {
             getLogger().info("PlaceholderAPI not found - placeholders will not be available");
         }
