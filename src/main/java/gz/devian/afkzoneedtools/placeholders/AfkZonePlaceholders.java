@@ -6,7 +6,6 @@ import gz.devian.afkzoneedtools.models.AfkZone;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 /**
  * PlaceholderAPI integration for AfkZoneEdtools
@@ -24,34 +23,40 @@ public class AfkZonePlaceholders {
     
     private void initializePlaceholderAPI() {
         try {
+            plugin.getLogger().info("Initializing PlaceholderAPI expansion...");
+            
             // Check if PlaceholderAPI is available
             Class.forName("me.clip.placeholderapi.PlaceholderAPI");
+            plugin.getLogger().info("PlaceholderAPI found!");
             
             // Create expansion using reflection
             Class<?> expansionClass = Class.forName("me.clip.placeholderapi.expansion.PlaceholderExpansion");
+            plugin.getLogger().info("PlaceholderExpansion class found!");
             
-            // Create anonymous class that implements PlaceholderExpansion
-            expansion = new Object() {
-                public String getIdentifier() { return "afkzone"; }
-                public String getAuthor() { return plugin.getDescription().getAuthors().toString(); }
-                public String getVersion() { return plugin.getDescription().getVersion(); }
-                public boolean persist() { return true; }
-                
-                public String onPlaceholderRequest(Player player, String params) {
-                    return AfkZonePlaceholders.this.onPlaceholderRequest(player, params);
-                }
-                
-                public boolean register() {
-                    try {
-                        Class<?> placeholderAPI = Class.forName("me.clip.placeholderapi.PlaceholderAPI");
-                        Method registerExpansion = placeholderAPI.getMethod("registerExpansion", expansionClass);
-                        registerExpansion.invoke(null, this);
+            // Create a proper expansion instance
+            expansion = java.lang.reflect.Proxy.newProxyInstance(
+                expansionClass.getClassLoader(),
+                new Class<?>[]{expansionClass},
+                (proxy, method, args) -> {
+                    String methodName = method.getName();
+                    
+                    if ("getIdentifier".equals(methodName)) {
+                        return "afkzone";
+                    } else if ("getAuthor".equals(methodName)) {
+                        return "MarcianoDeHolanda";
+                    } else if ("getVersion".equals(methodName)) {
+                        return plugin.getDescription().getVersion();
+                    } else if ("persist".equals(methodName)) {
                         return true;
-                    } catch (Exception e) {
-                        return false;
+                    } else if ("onPlaceholderRequest".equals(methodName)) {
+                        Player player = (Player) args[0];
+                        String params = (String) args[1];
+                        return onPlaceholderRequest(player, params);
                     }
+                    
+                    return method.getDefaultValue();
                 }
-            };
+            );
             
             plugin.getLogger().info("PlaceholderAPI expansion created successfully!");
             
@@ -59,24 +64,33 @@ public class AfkZonePlaceholders {
             plugin.getLogger().info("PlaceholderAPI not found - placeholders will not be available");
         } catch (Exception e) {
             plugin.getLogger().warning("Failed to initialize PlaceholderAPI expansion: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
     public void register() {
         try {
             if (expansion != null) {
-                // Call register method using reflection
-                Method registerMethod = expansion.getClass().getMethod("register");
-                boolean success = (Boolean) registerMethod.invoke(expansion);
+                plugin.getLogger().info("Registering PlaceholderAPI expansion...");
+                
+                // Get PlaceholderAPI class
+                Class<?> placeholderAPI = Class.forName("me.clip.placeholderapi.PlaceholderAPI");
+                Method registerExpansion = placeholderAPI.getMethod("registerExpansion", expansion.getClass().getInterfaces()[0]);
+                
+                // Register the expansion
+                boolean success = (Boolean) registerExpansion.invoke(null, expansion);
                 
                 if (success) {
-                    plugin.getLogger().info("PlaceholderAPI expansion registered successfully!");
+                    plugin.getLogger().info("PlaceholderAPI expansion 'afkzone' registered successfully!");
                 } else {
                     plugin.getLogger().warning("Failed to register PlaceholderAPI expansion");
                 }
+            } else {
+                plugin.getLogger().warning("Expansion is null, cannot register");
             }
         } catch (Exception e) {
             plugin.getLogger().warning("Failed to register PlaceholderAPI expansion: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
