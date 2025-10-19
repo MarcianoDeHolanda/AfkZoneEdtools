@@ -1,0 +1,526 @@
+# Example AFK Zones Configuration
+# Copy these examples into your zones.yml file and customize as needed
+
+zones:
+  # ========================================
+  # BEGINNER MINING ZONE - Coal Mine
+  # ========================================
+  coal_mine:
+    display_name: "&8Coal Mine &7[Beginner]"
+    type: "MINING"
+    center_location: "world:100:64:100"
+    block_material: "COAL_ORE"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.0
+      glow: true
+      glow_color: "DARK_GRAY"
+    
+    allowed_tools:
+      - "wooden_pickaxe"
+      - "stone_pickaxe"
+      - "iron_pickaxe"
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+    
+    harvest_interval: 3000
+    regeneration_time: 2000
+    
+    reward_currency: "farm-coins"
+    base_reward: 25
+    
+    max_workers: 10
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "BLOCK_CRACK"
+    
+    enabled: true
+
+  # ========================================
+  # INTERMEDIATE MINING ZONE - Iron Mine
+  # ========================================
+  iron_mine:
+    display_name: "&fIron Mine &7[Intermediate]"
+    type: "MINING"
+    center_location: "world:200:64:200"
+    block_material: "IRON_ORE"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.1
+      glow: true
+      glow_color: "WHITE"
+    
+    allowed_tools:
+      - "stone_pickaxe"
+      - "iron_pickaxe"
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+    
+    harvest_interval: 4000
+    regeneration_time: 2500
+    
+    reward_currency: "farm-coins"
+    base_reward: 50
+    
+    max_workers: 8
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "CRIT"
+    
+    enabled: true
+
+  # ========================================
+  # ADVANCED MINING ZONE - Gold Mine
+  # ========================================
+  gold_mine:
+    display_name: "&6Gold Mine &7[Advanced]"
+    type: "MINING"
+    center_location: "world:300:64:300"
+    block_material: "GOLD_ORE"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.2
+      glow: true
+      glow_color: "GOLD"
+    
+    allowed_tools:
+      - "iron_pickaxe"
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+    
+    harvest_interval: 6000
+    regeneration_time: 4000
+    
+    reward_currency: "farm-coins"
+    base_reward: 100
+    
+    max_workers: 6
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "FLAME"
+    
+    enabled: true
+
+  # ========================================
+  # EXPERT MINING ZONE - Diamond Mine
+  # ========================================
+  diamond_mine:
+    display_name: "&bDiamond Mine &7[Expert]"
+    type: "MINING"
+    center_location: "world:400:64:400"
+    block_material: "DIAMOND_ORE"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.3
+      glow: true
+      glow_color: "AQUA"
+    
+    allowed_tools:
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+      - "ultimate_pickaxe"
+    
+    harvest_interval: 8000
+    regeneration_time: 5000
+    
+    reward_currency: "farm-coins"
+    base_reward: 200
+    
+    max_workers: 5
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "ENCHANTMENT_TABLE"
+    
+    enabled: true
+
+  # ========================================
+  # LEGENDARY MINING ZONE - Netherite Mine
+  # ========================================
+  netherite_mine:
+    display_name: "&4Netherite Mine &7[Legendary]"
+    type: "MINING"
+    center_location: "world_nether:0:64:0"
+    block_material: "ANCIENT_DEBRIS"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.5
+      glow: true
+      glow_color: "RED"
+    
+    allowed_tools:
+      - "netherite_pickaxe"
+      - "ultimate_pickaxe"
+      - "legendary_pickaxe"
+    
+    harvest_interval: 12000
+    regeneration_time: 8000
+    
+    reward_currency: "farm-coins"
+    base_reward: 500
+    
+    max_workers: 3
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_NETHERITE_BLOCK_BREAK"
+      particle_type: "LAVA"
+    
+    enabled: true
+
+  # ========================================
+  # FARMING ZONE - Wheat Farm
+  # ========================================
+  wheat_farm:
+    display_name: "&eWheat Farm &7[Beginner]"
+    type: "FARMING"
+    center_location: "world:500:64:500"
+    block_material: "WHEAT"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.0
+      glow: true
+      glow_color: "YELLOW"
+    
+    allowed_tools:
+      - "wooden_hoe"
+      - "stone_hoe"
+      - "iron_hoe"
+      - "diamond_hoe"
+      - "netherite_hoe"
+    
+    harvest_interval: 3000
+    regeneration_time: 2000
+    
+    reward_currency: "farm-coins"
+    base_reward: 30
+    
+    max_workers: 12
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_CROP_BREAK"
+      particle_type: "VILLAGER_HAPPY"
+    
+    enabled: true
+
+  # ========================================
+  # FARMING ZONE - Carrot Farm
+  # ========================================
+  carrot_farm:
+    display_name: "&6Carrot Farm &7[Intermediate]"
+    type: "FARMING"
+    center_location: "world:600:64:600"
+    block_material: "CARROTS"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.0
+      glow: true
+      glow_color: "ORANGE"
+    
+    allowed_tools:
+      - "iron_hoe"
+      - "diamond_hoe"
+      - "netherite_hoe"
+    
+    harvest_interval: 4000
+    regeneration_time: 2500
+    
+    reward_currency: "farm-coins"
+    base_reward: 45
+    
+    max_workers: 10
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_CROP_BREAK"
+      particle_type: "VILLAGER_HAPPY"
+    
+    enabled: true
+
+  # ========================================
+  # FARMING ZONE - Potato Farm
+  # ========================================
+  potato_farm:
+    display_name: "&ePotat Farm &7[Intermediate]"
+    type: "FARMING"
+    center_location: "world:700:64:700"
+    block_material: "POTATOES"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.0
+      glow: true
+      glow_color: "YELLOW"
+    
+    allowed_tools:
+      - "iron_hoe"
+      - "diamond_hoe"
+      - "netherite_hoe"
+    
+    harvest_interval: 4000
+    regeneration_time: 2500
+    
+    reward_currency: "farm-coins"
+    base_reward: 45
+    
+    max_workers: 10
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_CROP_BREAK"
+      particle_type: "VILLAGER_HAPPY"
+    
+    enabled: true
+
+  # ========================================
+  # SPECIAL ZONE - Emerald Mine
+  # ========================================
+  emerald_mine:
+    display_name: "&aEmerald Mine &7[VIP Only]"
+    type: "MINING"
+    center_location: "world:800:64:800"
+    block_material: "EMERALD_ORE"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.4
+      glow: true
+      glow_color: "GREEN"
+    
+    allowed_tools:
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+      - "vip_pickaxe"
+    
+    harvest_interval: 10000
+    regeneration_time: 6000
+    
+    reward_currency: "farm-coins"
+    base_reward: 300
+    
+    max_workers: 4
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "VILLAGER_HAPPY"
+    
+    enabled: true
+
+  # ========================================
+  # CUSTOM ZONE - Obsidian Mine
+  # ========================================
+  obsidian_mine:
+    display_name: "&5Obsidian Mine &7[Custom]"
+    type: "CUSTOM"
+    center_location: "world:900:64:900"
+    block_material: "OBSIDIAN"
+    
+    block_display:
+      custom_model_data: 0
+      scale: 1.3
+      glow: true
+      glow_color: "DARK_PURPLE"
+    
+    allowed_tools:
+      - "diamond_pickaxe"
+      - "netherite_pickaxe"
+    
+    harvest_interval: 15000
+    regeneration_time: 10000
+    
+    reward_currency: "farm-coins"
+    base_reward: 150
+    
+    max_workers: 5
+    worker_type: "VILLAGER"
+    
+    edtools_integration:
+      affect_enchants: true
+      affect_sell: true
+      affect_block_currencies: true
+      affect_lucky_blocks: true
+      use_global_session: true
+      apply_boosters: true
+      grant_experience: true
+    
+    effects:
+      mining_particles: true
+      break_particles: true
+      success_sound: "BLOCK_STONE_BREAK"
+      particle_type: "PORTAL"
+    
+    enabled: true
+
+# ========================================
+# CONFIGURATION NOTES
+# ========================================
+#
+# Zone Types:
+#   - MINING: For ore blocks (coal, iron, diamond, etc.)
+#   - FARMING: For crop blocks (wheat, carrot, potato, etc.)
+#   - CUSTOM: For any other block type
+#
+# Block Materials:
+#   Use any valid Minecraft material name (uppercase)
+#   Examples: DIAMOND_ORE, WHEAT, STONE, NETHERITE_SCRAP
+#
+# Harvest Interval:
+#   Time in milliseconds between automatic harvests
+#   3000ms = 3 seconds (fast), 10000ms = 10 seconds (slow)
+#
+# Regeneration Time:
+#   Time in milliseconds for block to regenerate after mining
+#   Usually shorter than harvest interval for smooth animation
+#
+# Reward Calculation:
+#   base_reward × booster_multiplier = final_reward
+#   Example: 100 × 2.0 (booster) = 200 coins per harvest
+#
+# Allowed Tools:
+#   List of EdTools OmniTool IDs that can use this zone
+#   Must match your EdTools tool configuration
+#
+# Max Workers:
+#   Maximum number of simultaneous workers in this zone
+#   Adjust based on zone rarity and server performance
+#
+# Worker Type:
+#   Entity type for visual worker representation
+#   Recommended: VILLAGER, ZOMBIE, SKELETON
+#
+# EdTools Integration:
+#   ALL flags should be TRUE for normal zone behavior
+#   affect_enchants: Activates tool enchantments
+#   affect_sell: Triggers selling mechanics
+#   affect_block_currencies: Gives currency rewards
+#   affect_lucky_blocks: Enables lucky blocks
+#   use_global_session: Shared or private zone instance
+#   apply_boosters: Applies EdTools boosters
+#   grant_experience: Gives leveling experience
+#
+# Glow Colors:
+#   BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED,
+#   DARK_PURPLE, GOLD, GRAY, DARK_GRAY, BLUE, GREEN,
+#   AQUA, RED, LIGHT_PURPLE, YELLOW, WHITE, ORANGE,
+#   MAGENTA, LIGHT_BLUE, LIME, PINK, LIGHT_GRAY, CYAN,
+#   PURPLE, BROWN
+#
+# Center Location Format:
+#   "world_name:x:y:z"
+#   Example: "world:100:64:200"
+#   Use /afkzone tp <zone> to test locations

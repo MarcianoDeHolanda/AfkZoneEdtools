@@ -1,0 +1,45 @@
+name: AfkZoneEdtools
+version: '${project.version}'
+main: gz.devian.afkzoneedtools.AfkZoneEdtools
+api-version: '1.20'
+author: devian.gz
+description: Advanced AFK zone addon for EdTools farming/mining ecosystem
+website: https://devian.gz
+depend: [EdTools]
+softdepend: [PlaceholderAPI]
+
+commands:
+  afkzone:
+    description: Main command for AFK zone management
+    usage: /<command> [create|delete|list|edit|teleport|reload]
+    permission: afkzone.admin
+    aliases: [az, afkz]
+
+permissions:
+  afkzone.admin:
+    description: Full access to AFK zone management
+    default: op
+  afkzone.use:
+    description: Allows using AFK zones
+    default: true
+  afkzone.create:
+    description: Create new AFK zones
+    default: op
+  afkzone.delete:
+    description: Delete existing AFK zones
+    default: op
+  afkzone.edit:
+    description: Edit AFK zone configurations
+    default: op
+  afkzone.teleport:
+    description: Teleport to AFK zones
+    default: op
+  afkzone.reload:
+    description: Reload plugin configuration
+    default: op
+  afkzone.check:
+    description: Check if player is inside a zone
+    default: true
+  afkzone.click:
+    description: Allow clicking on AFK zone center blocks to activate/deactivate
+    default: true
